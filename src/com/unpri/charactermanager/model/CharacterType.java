@@ -1,7 +1,7 @@
 package com.unpri.charactermanager.model;
 
 /**
- * Enum untuk menentukan jenis/tipe karakter dalam aplikasi.
+ * Enum untuk menentukan jenis karakter.
  */
 public enum CharacterType {
     WARRIOR,
