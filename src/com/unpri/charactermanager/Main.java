@@ -23,7 +23,8 @@ public class Main {
         // 2. Jalankan GUI di dalam Event Dispatch Thread (EDT)
         SwingUtilities.invokeLater(() -> {
             MainWindow window = new MainWindow(manager.getAllCharacters());
-            window.setVisible(true);
+           window.setVisible(true);
+           
         });
     }
 }
