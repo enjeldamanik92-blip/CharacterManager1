@@ -19,12 +19,15 @@ public class Main {
         
         // 👉 LETAKKAN DI SINI untuk mengubah data / menambah karakter baru
         manager.addCharacter(new Character("Saitama", CharacterType.WARRIOR, 50));
+        
+        // Tambahan variasi level agar perbedaan visual terlihat
+        manager.addCharacter(new Character("Gatotkaca", CharacterType.WARRIOR, 7)); // level tinggi
+        manager.addCharacter(new Character("Morgana", CharacterType.MAGE, 1));      // level rendah
 
         // 2. Jalankan GUI di dalam Event Dispatch Thread (EDT)
         SwingUtilities.invokeLater(() -> {
             MainWindow window = new MainWindow(manager.getAllCharacters());
-           window.setVisible(true);
-           
+            window.setVisible(true);
         });
     }
 }
