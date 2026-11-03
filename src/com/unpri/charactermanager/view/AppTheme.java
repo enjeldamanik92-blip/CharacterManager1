@@ -27,8 +27,8 @@ public final class AppTheme {
 
     public static Color colorFor(CharacterType type) {
         switch (type) {
-            case WARRIOR: return Color.decode("#d63031"); // merah
-            case MAGE:    return Color.decode("#0984e3"); // biru
+            case WARRIOR: return Color.decode("#157ed3"); // merah
+            case MAGE:    return Color.decode("#e34709"); // biru
             case ARCHER:  return Color.decode("#00b894"); // hijau
             default:      return Color.GRAY;              
         }
