@@ -13,7 +13,7 @@ public class Main {
         CharacterManager manager = new CharacterManager();
         manager.addCharacter(new Character("Arjuna", CharacterType.WARRIOR, 5));
         manager.addCharacter(new Character("Merlin", CharacterType.MAGE, 8));
-        manager.addCharacter(new Character("Athena", CharacterType.WARRIOR, 12));
+        manager.addCharacter(new Character("Athena", CharacterType.WARRIOR, 13));
         manager.addCharacter(new Character("Legolas", CharacterType.ARCHER, 15));
         manager.addCharacter(new Character("Kage", CharacterType.ASSASSIN, 20));
         
