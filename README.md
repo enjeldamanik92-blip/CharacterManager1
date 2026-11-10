@@ -1,135 +1,75 @@
-# Character Manager — TP3 (Java Visual SIH-6406)
+# TP12 — Layout, Resize, dan Dokumentasi GUI
 
-## Deskripsi
+## 1. Wireframe
 
-Character Manager merupakan program sederhana berbasis Java untuk mengelola karakter. Program ini menerapkan konsep Object-Oriented Programming (OOP), seperti encapsulation, constructor, dan enum. Program ini memiliki fitur level up, pengelolaan mana, serta pemeriksaan kondisi hidup karakter menggunakan method `isAlive()`.
-
-## Screenshot Output Program
-
-Screenshot berikut menunjukkan hasil eksekusi program, termasuk fitur level up, mana, dan `isAlive()`.
-
-![Output Character Manager](screenshots/output.png)
-
-## Struktur Folder Project
+Berikut wireframe rancangan tampilan Character Manager v0.5:
 
 ```text
-CharacterManager/
-├── src/
-│   └── com/
-│       └── unpri/
-│           └── charactermanager/
-│               ├── Main.java
-│               └── model/
-│                   ├── Character.java
-│                   └── CharacterType.java
-├── screenshots/
-│   └── output.png
-└── README.md
+┌──────────────────────────────────────────────────────────────┐
+│ Character Manager                               8 karakter   │
+├──────────────────────────────────────────────────────────────┤
+│ Total: 8     Warrior: 2     Mage: 2     Archer: 2           │
+├───────────────────────────────────────────────────┬──────────┤
+│                                                   │          │
+│  Arjuna | WARRIOR | Lv.5 | HP | ATK              │ Legenda  │
+│                                                   │          │
+│  Merlin | MAGE | Lv.3 | HP | ATK                 │ WARRIOR  │
+│                                                   │ MAGE     │
+│  Athena | ARCHER | Lv.4 | HP | ATK               │ ARCHER   │
+│                                                   │ HEALER   │
+│  Luna | HEALER | Lv.6 | HP | ATK                 │          │
+│                                                   │          │
+│  Zeus | WARRIOR | Lv.8 | HP | ATK                │          │
+│                                                   │          │
+│  Gandalf | MAGE | Lv.7 | HP | ATK                │          │
+│                                                   │          │
+│  Robin | ARCHER | Lv.2 | HP | ATK                │          │
+│                                                   │          │
+│  Sakura | HEALER | Lv.5 | HP | ATK               │          │
+│                                                   │          │
+├───────────────────────────────────────────────────┴──────────┤
+│ Total: 8 karakter | Siap                              v0.5 │
+└──────────────────────────────────────────────────────────────┘
 ```
 
-## Fitur Program
+## 2. Screenshot
 
-- Membuat objek karakter menggunakan dua constructor.
-- Menentukan jenis karakter menggunakan enum `CharacterType`.
-- Menghitung HP dan attack berdasarkan level.
-- Menaikkan level karakter menggunakan `setLevel()`.
-- Mengatur mana dengan validasi nilai negatif.
-- Memeriksa kondisi hidup karakter melalui `isAlive()`.
-- Menampilkan data karakter menggunakan `toString()`.
+### Ukuran Awal
 
-## Identitas Mahasiswa
+![Screenshot ukuran awal](screenshots/tp12_tampilanAwal.png)
 
-- Nama lengkap: [Enjel Srimelda Damanik]
-- NIM: [253303621267]
-- Mata kuliah: Java Visual SIH-6406
+Tampilan aplikasi pada ukuran awal setelah program dijalankan.
 
-## Analisis Desain dan Ekosistem Java
+### Jendela Dilebarkan
 
-Dokumen Google Docs: [Tempelkan link Google Docs Bagian D di sini] (https://docs.google.com/document/d/1GdGIiooYlFPSR_MY_cIMAgw6LOZMwmrWbYD9XmSj52s/edit?usp=sharing)
+![Screenshot jendela dilebarkan](screenshots/tp12_dilebarkan.png)
 
+Tampilan aplikasi setelah ukuran jendela diperbesar. Area daftar karakter pada bagian `CENTER` mendapatkan ruang lebih besar, sedangkan legenda tetap berada di sebelah kanan.
 
-# TP5 — Character Manager: Implementasi dan Analisis
+### Jendela Dikecilkan
 
-## A. Implementasi Core
+![Screenshot jendela dikecilkan](screenshots/tp12_dikecilkan.png)
 
-Pada tugas TP5, project CharacterManager dikembangkan dengan beberapa fitur utama:
+Tampilan aplikasi setelah jendela diperkecil sampai scrollbar pada daftar karakter terlihat.
 
-1. `addCharacter()` digunakan untuk menambahkan karakter baru ke dalam daftar.
-2. `findByName()` digunakan untuk mencari karakter berdasarkan nama.
-3. `removeCharacter()` digunakan untuk menghapus karakter.
-4. `getTotalCharacters()` digunakan untuk menghitung jumlah karakter.
-5. `getAllCharacters()` digunakan untuk mendapatkan salinan daftar karakter.
+## 3. Tabel Pengamatan Resize
 
-Penambahan karakter dengan nama duplikat ditolak agar setiap karakter memiliki nama yang unik.
+| Kondisi | Prediksi | Hasil |
+|---|---|---|
+| Ukuran awal | Semua bagian utama terlihat dengan header, daftar karakter, legenda, dan status bar. | Sesuai dengan prediksi. |
+| Jendela dilebarkan | Area `CENTER` akan menjadi lebih lebar karena merupakan bagian yang fleksibel pada `BorderLayout`. | Sesuai. Daftar karakter melebar sementara legenda tetap berada di kanan. |
+| Jendela dikecilkan | Area daftar karakter menjadi lebih sempit dan scrollbar akan digunakan ketika isi tidak cukup ditampilkan. | Sesuai. Scrollbar vertikal terlihat pada daftar karakter. |
 
-## B. Mini-Challenge
+## 4. Struktur Panel Bersarang
 
-Dua fitur tambahan yang berhasil diimplementasikan:
+Aplikasi menggunakan `BorderLayout` pada `MainWindow` untuk membagi tampilan menjadi bagian `NORTH`, `CENTER`, `EAST`, dan `SOUTH`. Bagian `NORTH` memiliki panel bersarang yang berisi header dan panel statistik tambahan. Bagian `CENTER` menggunakan `JScrollPane` yang membungkus panel daftar kartu karakter, sedangkan bagian `EAST` menggunakan `BoxLayout` untuk menyusun legenda secara vertikal. Struktur panel bersarang ini membuat setiap bagian memiliki tanggung jawab layout yang jelas dan tetap rapi ketika ukuran jendela berubah.
 
-**1. getAverageLevel()**
+## 5. Alasan Panel Tambahan dan Layout yang Ditolak
 
-Method ini menghitung rata-rata level seluruh karakter. Jika daftar karakter kosong, method mengembalikan nilai 0 agar tidak terjadi pembagian dengan nol.
+Panel statistik ditambahkan untuk menampilkan informasi ringkas mengenai jumlah karakter dan distribusi role. Panel tersebut menggunakan `GridLayout(2, 2)` karena setiap informasi statistik dapat ditempatkan dalam susunan baris dan kolom dengan ukuran yang seragam. Layout yang ditolak adalah `FlowLayout` karena posisi komponen dapat berubah mengikuti lebar ruang yang tersedia sehingga kurang konsisten untuk tampilan statistik. `GridLayout` dipilih karena memberikan susunan yang lebih teratur dan mudah dibaca.
 
-**2. findByType(CharacterType type)**
+## 6. Link Google Docs — Bagian D
 
-Method ini mencari karakter berdasarkan tipe, seperti WARRIOR, MAGE, ARCHER, dan HEALER. Hasil pencarian dikembalikan dalam ArrayList baru.
+Dokumentasi Bagian D dapat dilihat melalui link berikut:
 
-## C. Fitur Analitik Rancangan Sendiri
-
-**Nama fitur: findStrongest()**
-
-Fitur ini digunakan untuk mencari karakter dengan nilai attack power tertinggi.
-
-Cara kerjanya adalah membandingkan attack power setiap karakter di dalam daftar. Karakter dengan nilai tertinggi akan dikembalikan sebagai hasil.
-
-Fitur ini menjaga encapsulation karena tidak memberikan akses langsung ke ArrayList internal. Jika daftar karakter kosong, method mengembalikan null.
-
-## D. Analisis Reference dan Rancangan
-Dokumen analisis Google Docs:
-[https://docs.google.com/document/d/1_PTAUrss2dBTFEQFEGuBqRKJbhjbdTM0kX4zpoS-hyU/edit?usp=sharing]
-
-## E. Screenshot Hasil Pengujian
-### 1. Output Program TP5
-![Output Program TP5](screenshots/output_tp5.png)
-### 2. Eksperimen Object Reference dan Defensive Copy
-![Eksperimen Reference dan Defensive Copy](screenshots/reference-defensive-copy.png)
-
-
-## TP8
-
-### 1. Screenshot MainWindow
-                 (SEBELUM)
-![MainWindow TP8](screenshots/sebelum_tp8.png)  
-                (SESUDAH)
-![MainWindow TP8](screenshots/sesudah_tp8.png)
-
-### 2. Aliran Data Aplikasi (MVC)
-Aliran data diawali dari `Main.java` yang menginstansiasi `CharacterManager` untuk mengelola objek `Character` sebagai representasi layer Model. Selanjutnya, `Main.java` mengambil seluruh daftar karakter melalui metode `manager.getAllCharacters()` dan meneruskannya ke dalam *constructor* `MainWindow`. Komponen `MainWindow` yang bertindak sebagai layer View menerima koleksi data tersebut lalu melakukan iterasi secara dinamis untuk merender daftar karakter serta menghitung statistik rata-rata level pada antarmuka GUI.
-
-### 3. Daftar Karakter Baru
-* **Legolas** (Tipe: `ARCHER`, Level: 15): Dipilih dengan tipe `ARCHER` untuk menambahkan variasi kelas *ranged/physical damage* dengan level menengah tinggi.
-* **Kage** (Tipe: `ASSASSIN`, Level: 20): Dipilih dengan tipe `ASSASSIN` untuk menguji kelas *stealth/high-burst* serta memberikan nilai level paling tinggi agar korelasi angka rata-rata level terlihat dinamis.
-
-### 4. Tautan Analisis GUI & MVC (Bagian D)
-Link Document: (https://docs.google.com/document/d/1NI6IC3iE0PxcyzHzGdWYQRWr3IRLTMnEWTSit2KKvp0/edit?usp=sharing)
-
-
-## TP10 — Dokumentasi & Analisis Tampilan (Sprint #4)
-
-### 1. Screenshot Sebelum dan Sesudah
-* **Sebelum (v0.3 - Tanpa Tema Terpusat & Highlight):**
-![Sebelum v0.3](screenshots/sebelum_tp10.png)
-* **Sesudah (v0.4 - Dengan AppTheme & Highlight Level Tinggi):**
-![Sesudah v0.4](screenshots/sesudah_tp10.png)
-
-### 2. Mengapa Warna Disimpan di `AppTheme` dan Bukan di `Character`?
-Penyimpanan warna pada kelas `AppTheme` (layer View) dan bukan di dalam kelas `Character` (Model) bertujuan untuk menjaga pemisahan tanggung jawab yang ketat sesuai prinsip arsitektur MVC. Kelas `Character` murni bertugas menyimpan data logika objek (seperti nama, role, dan level), sementara urusan visual dan estetika antarmuka sepenuhnya ditangani oleh komponen View. Pendekatan ini memastikan bahwa perubahan tema warna di masa mendatang dapat dilakukan secara terpusat pada satu file tanpa harus mengubah struktur data inti di dalam model.
-
-### 3. Daftar Dua Properti Tambahan pada Kartu Karakter Beserta Alasannya
-1. **Tooltip Dinamis (`setToolTipText`):**
-   * *Alasan:* Berfungsi untuk menampilkan informasi deskriptif dan karakteristik khusus setiap role (menggunakan method `AppTheme.describe()`) saat kursor diarahkan ke kartu karakter, sehingga memberikan informasi mendalam secara opsional tanpa membuat layar utama tampak penuh.
-2. **Kursor Interaktif (`setCursor`):**
-   * *Alasan:* Mengubah bentuk kursor menjadi ikon tangan (*Hand Cursor*) saat menyentuh area kartu karakter, guna memberikan umpan balik visual (*visual feedback*) yang intuitif kepada pengguna bahwa elemen tersebut bersifat interaktif.
-
-### 4. Link Google Docs (Bagian D)
-* [Tautan Dokumen Analisis Google Docs](https://docs.google.com/document/d/1Zyd2wV--mXjEFX09lHydEnwldXSQqGZCtSUY-3MU2h4/edit?usp=sharing)
+**[Google Docs Bagian D](https://docs.google.com/document/d/1bsHByR8_pmnIyP6vV8mCfUgSKnN6LbFC94oNbC3o4No/edit?usp=sharing)**
