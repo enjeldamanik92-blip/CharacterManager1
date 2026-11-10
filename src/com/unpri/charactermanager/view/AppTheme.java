@@ -9,7 +9,7 @@ import com.unpri.charactermanager.model.CharacterType;
 public final class AppTheme {
 
     // Palet warna (Minimal 3 warna)
-    public static final Color BG_MAIN    = Color.decode("#13131f"); 
+    public static final Color BG_MAIN    = Color.decode("#3131ac"); 
     public static final Color TEXT_MAIN  = Color.decode("#dfe6e9"); 
     public static final Color TEXT_LIGHT = Color.WHITE;             
     public static final Color GOLD       = Color.decode("#fdcb6e"); 
